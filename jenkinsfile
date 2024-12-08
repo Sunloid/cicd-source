@@ -15,9 +15,10 @@ pipeline {
             steps{
                 script{
                      sh """
-                        docker build -t sunloid04/nodeapp:${BUILD_NUMBER} .                     
-                        docker tag  sunloid04/nodeapp:${BUILD_NUMBER} sunloid04/nodeapp:latest 
-			docker push sunloid04/nodeapp:${BUILD_BUMBER}
+			def imagetag = "${env.BUILD_ID}" 
+                        docker build -t sunloid04/nodeapp:${imagetag} .                     
+                        docker tag  sunloid04/nodeapp:${imagetag} sunloid04/nodeapp:latest 
+			docker push sunloid04/nodeapp:${imagetag}
 			docker push sunloid04/nodeapp:latest
                     """
                 }
