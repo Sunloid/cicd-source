@@ -18,6 +18,7 @@ pipeline {
                         docker build -t sunloid04/nodeapp:${BUILD_NUMBER} .                     
                         docker tag  sunloid04/nodeapp:${BUILD_NUMBER} sunloid04/nodeapp:latest 
                         docker push sunloid04/nodeapp:${BUILD_NUMBER}
+			docker push sunloid04/nodeapp:latest
                     """
                 }
             }
