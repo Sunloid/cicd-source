@@ -3,6 +3,7 @@ pipeline {
     agent any
     tools {
 	    jdk "OracleJDK8"
+	    git "GIT"
 	}
     stages{
         stage('Fetch code') {
