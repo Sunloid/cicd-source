@@ -16,7 +16,7 @@ pipeline {
             steps{
                 script{
                      sh """
-			def imagetag = "${env.BUILD_ID}" 
+			def imagetag = "${env.BUILD_NUMBER}" 
                         docker build -t sunloid04/nodeapp:${imagetag} .                     
                         docker tag  sunloid04/nodeapp:${imagetag} sunloid04/nodeapp:latest 
 			docker push sunloid04/nodeapp:${imagetag}
