@@ -1,0 +1,34 @@
+// Visit the GroovySyntax.md for the explanation of this pipeline
+pipeline {
+    agent any
+    tools {
+	    maven "MAVEN3"
+	    jdk "OracleJDK8"
+	}
+    stages{
+        stage('Fetch code') {
+          steps{
+                git branch: 'main', url:'https://github.com/Sunloid/CICD_Java_Source'
+          }  
+        }
+   
+        stage("Build image and deploy it to ecr"){
+            steps{
+                script{
+                     sh """
+                        docker build -t app:${BUILD_NUMBER} ./app_dockerfile/.                     
+                        docker tag app:${BUILD_NUMBER} 533267397460.dkr.ecr.ap-south-1.amazonaws.com/cicd-repo:app${BUILD_NUMBER}
+                        docker push 533267397460.dkr.ecr.ap-south-1.amazonaws.com/cicd-repo:app${BUILD_NUMBER}
+                    """
+                }
+            }
+        }
+
+        stage("Deploy to Kubernetes"){
+            steps{
+                
+            }
+        }
+
+    }
+}
