@@ -5,6 +5,7 @@ pipeline {
 	    jdk "OracleJDK8"
 	    git "GIT"
 	}
+
     stages{
         stage('Fetch code') {
           steps{
@@ -24,6 +25,12 @@ pipeline {
                     """ 
 		    }
                 }
+            }
+        }
+
+	stage("Deploy to Kubernetes"){
+            steps{
+                
             }
         }
     }
